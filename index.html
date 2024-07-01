@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Encryption</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Text Encryption</h1>
+        <form action="/" method="post">
+            <label for="message">Enter text to encrypt:</label>
+            <input type="text" id="message" name="message" required>
+            <button type="submit">Encrypt</button>
+        </form>
+
+        {% if encrypted_message %}
+        <h2>Encrypted Message</h2>
+        <p>{{ encrypted_message }}</p>
+
+        <h2>Key</h2>
+        <p>{{ key }}</p>
+    <form action="/decrypt" method="post">
+            <input type="hidden" name="encrypted_message" value="{{ encrypted_message }}">
+            <input type="hidden" name="key" value="{{ key }}">
+            <button type="submit">Decrypt</button>
+        </form>
+        {% endif %}
+
+        {% if decrypted_message %}
+        <h2>Decrypted Message</h2>
+        <p>{{ decrypted_message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
